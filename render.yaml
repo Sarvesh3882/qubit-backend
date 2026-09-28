@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: qubit-backend
+    runtime: python
+    region: singapore          # closest to India — change to ohio/oregon for US
+    plan: free                 # upgrade to starter ($7/mo) for no sleep
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+
+    # Persistent disk — keeps qubit.db alive across deploys
+    # Remove this block if you switch to PostgreSQL
+    disk:
+      name: qubit-data
+      mountPath: /data
+      sizeGB: 1
+
+    envVars:
+      # ── Required ──────────────────────────────────────────────────────────
+      - key: SECRET_KEY
+        generateValue: true            # Render auto-generates a secure random value
+
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:////data/qubit.db   # 4 slashes = absolute path on disk
+
+      - key: FRONTEND_ORIGIN
+        value: https://qubit-app.vercel.app          # ← replace with your actual Vercel URL
+
+      # ── Optional — fill in Render dashboard, not here ────────────────────
+      - key: GNEWS_API_KEY
+        sync: false
+      - key: OPENALEX_EMAIL
+        sync: false
+      - key: SEMANTIC_SCHOLAR_API_KEY
+        sync: false
+      - key: MISTRAL_API_KEY
+        sync: false
+      - key: MISTRAL_AGENT_ID
+        sync: false
+      - key: QPANDA3_API_KEY
+        sync: false

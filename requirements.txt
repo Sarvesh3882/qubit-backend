@@ -1,0 +1,29 @@
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+pydantic==2.13.5
+pydantic-settings==2.15.0
+python-jose==3.5.0
+passlib==1.7.4
+bcrypt==4.2.0
+python-multipart==0.0.12
+sqlmodel==0.0.44
+aiosqlite==0.20.0
+httpx==0.28.1
+qiskit==2.5.2
+qiskit-aer==0.17.2
+numpy==2.4.6
+scipy==1.17.1
+
+# D-Wave / quantum annealing — local simulated annealing (no API key needed)
+# Real QPU submission requires DWAVE_API_TOKEN in .env
+dimod==0.12.22
+dwave-samplers==1.8.0
+
+# Mistral AI — AI tutor assistant
+# Agents API + Chat Completions. Requires MISTRAL_API_KEY in .env.
+mistralai==2.10.1
+
+# Origin Quantum Cloud — optional, required only for QPU/cloud access
+# Install with: pip install qpanda3_runtime
+qpanda3_runtime==1.0.2
+pyqpanda3==0.4.1

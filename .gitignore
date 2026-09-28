@@ -44,3 +44,7 @@ htmlcov/
 
 # Compiled/cache
 *.pyc
+
+# Local test / scratch scripts
+test_*.py
+verify_*.py
